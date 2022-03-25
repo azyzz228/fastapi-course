@@ -2,6 +2,7 @@ from datetime import datetime
 from typing import Optional
 from fastapi import FastAPI
 from pydantic import BaseModel
+import uvicorn
 
 app = FastAPI()
 
@@ -45,3 +46,8 @@ class Blog(BaseModel):
 @app.post("/blog")
 def create_blog(blog: Blog):
     return {"data":f"blog created with title as {blog.title}"}
+
+
+# To use other local host in terminal> python main.py
+# if __name__=="__main__":
+#     uvicorn.run(app, host="127.0.0.1", port=9000)

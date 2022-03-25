@@ -1,2 +1,2 @@
 # fastapi-course
-Learning backend development with FastAPI framework
+Learning backend development with FastAPI framework.
