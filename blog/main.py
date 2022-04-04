@@ -40,3 +40,16 @@ def destroy(id: int, db: Session=Depends(get_db)):
     db.query(models.Blog).filter(models.Blog.id == id).delete(synchronize_session=False)
     db.commit()
     return "deleted"
+
+
+@app.put("/blog/{id}", status_code=status.HTTP_202_ACCEPTED)
+def update(id: int, response: Response, request: schemas.Blog ,db: Session=Depends(get_db)):
+    print(request)
+    blog = db.query(models.Blog).filter(models.Blog.id==id)
+    
+    if not blog.first():
+        # response.status_code=status.HTTP_404_NOT_FOUND
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Blog with this id does not exist")
+    blog.update(request.dict())
+    db.commit()
+    return "updated"
