@@ -20,10 +20,10 @@ class User(BaseModel):
 
 class showUser(BaseModel):
     username: str
-    email: str
     blogs: List[Blog] = []
     class Config():
         orm_mode= True
+
 
 class showBlog(BaseModel):
     title: str
@@ -31,3 +31,17 @@ class showBlog(BaseModel):
     creator: showUser
     class Config():
         orm_mode= True
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
+
+class TokenData(BaseModel):
+    username: str | None = None
+
+
+
+class Login(BaseModel):
+    username : str
+    password: str

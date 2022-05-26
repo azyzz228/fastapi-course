@@ -1,4 +1,6 @@
 
+from xmlrpc.client import Boolean
+import bcrypt
 from passlib.context import CryptContext
 
 
@@ -8,3 +10,5 @@ class Hash():
     def bcrypt(password: str):
         return pwd_context.hash(password)
 
+    def verify(hashed_password: str, plain_password: str) -> Boolean:
+        return pwd_context.verify(plain_password,hashed_password)
